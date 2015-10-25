@@ -3,3 +3,11 @@
       suggest that when using the libusb in C++, they suggest installing
       libsub-1.0.0, but I think libusb-dev was enough to "make" pk2cmd from the
       source.
+    - The "sudo apt-get install sdcc" installed outdated sdcc which did not
+      have the 18f6887.h header. Need to build from downloading the latest
+      binary.
+    - However, this binary is 32-bit, so I need to install some library so that
+      Ubuntu 64bit can run 32-bit binary.
+    - But after installing libraries for fixing 32-bit issue, there was
+      `GLIBCXX_3.4.19' not found error. This issue was fixed by installing
+      libstdc++6 from a non-default location: "ppa:ubuntu-toolchain-r/test".

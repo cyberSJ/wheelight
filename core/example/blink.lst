@@ -1,0 +1,301 @@
+gplink-0.13.7 beta
+Copyright (c) 1998-2005 gputils project
+Listing File Generated: 10-24-2015  23:57:39
+ 
+ 
+Address  Value    Disassembly              Source
+-------  -----    -----------              ------
+                                           ;--------------------------------------------------------
+                                           ; File Created by SDCC : free open source ANSI-C Compiler
+                                           ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
+                                           ; This file was generated Sat Oct 24 23:57:39 2015
+                                           ;--------------------------------------------------------
+                                           ; PIC port for the 14-bit core
+                                           ;--------------------------------------------------------
+                                           ;	.file	"blink.c"
+                                           	list	p=16f887
+                                           	radix dec
+                                           	include "p16f887.inc"
+                                                   LIST
+                                           ; P16F887.INC  Standard Header File, Version 1.00    Microchip Technology, Inc.
+                                                   NOLIST
+                                           ;--------------------------------------------------------
+                                           ; external declarations
+                                           ;--------------------------------------------------------
+                                           	extern	_STATUSbits
+                                           	extern	_PORTAbits
+                                           	extern	_PORTBbits
+                                           	extern	_PORTCbits
+                                           	extern	_PORTDbits
+                                           	extern	_PORTEbits
+                                           	extern	_INTCONbits
+                                           	extern	_PIR1bits
+                                           	extern	_PIR2bits
+                                           	extern	_T1CONbits
+                                           	extern	_T2CONbits
+                                           	extern	_SSPCONbits
+                                           	extern	_CCP1CONbits
+                                           	extern	_RCSTAbits
+                                           	extern	_CCP2CONbits
+                                           	extern	_ADCON0bits
+                                           	extern	_OPTION_REGbits
+                                           	extern	_TRISAbits
+                                           	extern	_TRISBbits
+                                           	extern	_TRISCbits
+                                           	extern	_TRISDbits
+                                           	extern	_TRISEbits
+                                           	extern	_PIE1bits
+                                           	extern	_PIE2bits
+                                           	extern	_PCONbits
+                                           	extern	_OSCCONbits
+                                           	extern	_OSCTUNEbits
+                                           	extern	_SSPCON2bits
+                                           	extern	_MSKbits
+                                           	extern	_SSPMSKbits
+                                           	extern	_SSPSTATbits
+                                           	extern	_WPUBbits
+                                           	extern	_IOCBbits
+                                           	extern	_VRCONbits
+                                           	extern	_TXSTAbits
+                                           	extern	_SPBRGbits
+                                           	extern	_SPBRGHbits
+                                           	extern	_PWM1CONbits
+                                           	extern	_ECCPASbits
+                                           	extern	_PSTRCONbits
+                                           	extern	_ADCON1bits
+                                           	extern	_WDTCONbits
+                                           	extern	_CM1CON0bits
+                                           	extern	_CM2CON0bits
+                                           	extern	_CM2CON1bits
+                                           	extern	_SRCONbits
+                                           	extern	_BAUDCTLbits
+                                           	extern	_ANSELbits
+                                           	extern	_ANSELHbits
+                                           	extern	_EECON1bits
+                                           	extern	_INDF
+                                           	extern	_TMR0
+                                           	extern	_PCL
+                                           	extern	_STATUS
+                                           	extern	_FSR
+                                           	extern	_PORTA
+                                           	extern	_PORTB
+                                           	extern	_PORTC
+                                           	extern	_PORTD
+                                           	extern	_PORTE
+                                           	extern	_PCLATH
+                                           	extern	_INTCON
+                                           	extern	_PIR1
+                                           	extern	_PIR2
+                                           	extern	_TMR1
+                                           	extern	_TMR1L
+                                           	extern	_TMR1H
+                                           	extern	_T1CON
+                                           	extern	_TMR2
+                                           	extern	_T2CON
+                                           	extern	_SSPBUF
+                                           	extern	_SSPCON
+                                           	extern	_CCPR1
+                                           	extern	_CCPR1L
+                                           	extern	_CCPR1H
+                                           	extern	_CCP1CON
+                                           	extern	_RCSTA
+                                           	extern	_TXREG
+                                           	extern	_RCREG
+                                           	extern	_CCPR2
+                                           	extern	_CCPR2L
+                                           	extern	_CCPR2H
+                                           	extern	_CCP2CON
+                                           	extern	_ADRESH
+                                           	extern	_ADCON0
+                                           	extern	_OPTION_REG
+                                           	extern	_TRISA
+                                           	extern	_TRISB
+                                           	extern	_TRISC
+                                           	extern	_TRISD
+                                           	extern	_TRISE
+                                           	extern	_PIE1
+                                           	extern	_PIE2
+                                           	extern	_PCON
+                                           	extern	_OSCCON
+                                           	extern	_OSCTUNE
+                                           	extern	_SSPCON2
+                                           	extern	_PR2
+                                           	extern	_MSK
+                                           	extern	_SSPADD
+                                           	extern	_SSPMSK
+                                           	extern	_SSPSTAT
+                                           	extern	_WPUB
+                                           	extern	_IOCB
+                                           	extern	_VRCON
+                                           	extern	_TXSTA
+                                           	extern	_SPBRG
+                                           	extern	_SPBRGH
+                                           	extern	_PWM1CON
+                                           	extern	_ECCPAS
+                                           	extern	_PSTRCON
+                                           	extern	_ADRESL
+                                           	extern	_ADCON1
+                                           	extern	_WDTCON
+                                           	extern	_CM1CON0
+                                           	extern	_CM2CON0
+                                           	extern	_CM2CON1
+                                           	extern	_EEDAT
+                                           	extern	_EEDATA
+                                           	extern	_EEADR
+                                           	extern	_EEDATH
+                                           	extern	_EEADRH
+                                           	extern	_SRCON
+                                           	extern	_BAUDCTL
+                                           	extern	_ANSEL
+                                           	extern	_ANSELH
+                                           	extern	_EECON1
+                                           	extern	_EECON2
+                                           	extern	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; global declarations
+                                           ;--------------------------------------------------------
+                                           	global	_main
+                                           	global	_ucharCount
+                                           	global	_uintDelayCount
+                                           
+                                           	global PSAVE
+                                           	global SSAVE
+                                           	global WSAVE
+                                           	global STK12
+                                           	global STK11
+                                           	global STK10
+                                           	global STK09
+                                           	global STK08
+                                           	global STK07
+                                           	global STK06
+                                           	global STK05
+                                           	global STK04
+                                           	global STK03
+                                           	global STK02
+                                           	global STK01
+                                           	global STK00
+                                           
+                                           sharebank udata_ovr 0x0070
+                                           PSAVE	res 1
+                                           SSAVE	res 1
+                                           WSAVE	res 1
+                                           STK12	res 1
+                                           STK11	res 1
+                                           STK10	res 1
+                                           STK09	res 1
+                                           STK08	res 1
+                                           STK07	res 1
+                                           STK06	res 1
+                                           STK05	res 1
+                                           STK04	res 1
+                                           STK03	res 1
+                                           STK02	res 1
+                                           STK01	res 1
+                                           STK00	res 1
+                                           
+                                           ;--------------------------------------------------------
+                                           ; global definitions
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; absolute symbol definitions
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; compiler-defined variables
+                                           ;--------------------------------------------------------
+                                           ;--------------------------------------------------------
+                                           ; initialized data
+                                           ;--------------------------------------------------------
+                                           
+                                           ID_blink_0	idata
+                                           _ucharCount
+                                           	db	0x00
+                                           
+                                           
+                                           ID_blink_1	idata
+                                           _uintDelayCount
+                                           	db	0x00, 0x00
+                                           
+                                           ;--------------------------------------------------------
+                                           ; overlayable items in internal ram 
+                                           ;--------------------------------------------------------
+                                           ;	udata_ovr
+                                           ;--------------------------------------------------------
+                                           ; reset vector 
+                                           ;--------------------------------------------------------
+                                           STARTUP	code 0x0000
+000000   0000     nop                      	nop
+000001   118a     bcf	0xa, 0x3             	pagesel __sdcc_gsinit_startup
+000002   120a     bcf	0xa, 0x4             
+000003   2804     goto	0x4                 	goto	__sdcc_gsinit_startup
+                                           ;--------------------------------------------------------
+                                           ; code
+                                           ;--------------------------------------------------------
+                                           code_blink	code
+                                           ;***
+                                           ;  pBlock Stats: dbName = M
+                                           ;***
+                                           ;entry:  _main	;Function start
+                                           ; 2 exit points
+                                           ;has an exit
+                                           ;; Starting pCode block
+                                           _main	;Function start
+                                           ; 2 exit points
+                                           ;	.line	57; "blink.c"	TRISC = 0x00;
+0000d4   1683     bsf	0x3, 0x5             	BANKSEL	_TRISC
+0000d5   1303     bcf	0x3, 0x6             
+0000d6   0187     clrf	0x7                 	CLRF	_TRISC
+                                           ;	.line	59; "blink.c"	ucharCount = 0;
+0000d7   1283     bcf	0x3, 0x5             	BANKSEL	_ucharCount
+0000d8   1303     bcf	0x3, 0x6             
+0000d9   01ae     clrf	0x2e                	CLRF	_ucharCount
+                                           ;	.line	60; "blink.c"	uintDelayCount = 0;
+0000da   1283     bcf	0x3, 0x5             	BANKSEL	_uintDelayCount
+0000db   1303     bcf	0x3, 0x6             
+0000dc   01ac     clrf	0x2c                	CLRF	_uintDelayCount
+0000dd   01ad     clrf	0x2d                	CLRF	(_uintDelayCount + 1)
+                                           ;;unsigned compare: left < lit(0x2710=10000), size=2
+                                           _00105_DS_
+                                           ;	.line	66; "blink.c"	while ( uintDelayCount < 10000 )
+0000de   3027     movlw	0x27               	MOVLW	0x27
+0000df   1283     bcf	0x3, 0x5             	BANKSEL	_uintDelayCount
+0000e0   1303     bcf	0x3, 0x6             
+0000e1   022d     subwf	0x2d, w            	SUBWF	(_uintDelayCount + 1),W
+0000e2   1d03     btfss	0x3, 0x2           	BTFSS	STATUS,2
+0000e3   28e6     goto	0xe6                	GOTO	_00119_DS_
+0000e4   3010     movlw	0x10               	MOVLW	0x10
+0000e5   022c     subwf	0x2c, w            	SUBWF	_uintDelayCount,W
+                                           _00119_DS_
+0000e6   1803     btfsc	0x3, 0             	BTFSC	STATUS,0
+0000e7   28ee     goto	0xee                	GOTO	_00107_DS_
+                                           ;;genSkipc:3247: created from rifx:0xffa36514
+                                           ;	.line	69; "blink.c"	uintDelayCount++;
+0000e8   1283     bcf	0x3, 0x5             	BANKSEL	_uintDelayCount
+0000e9   1303     bcf	0x3, 0x6             
+0000ea   0aac     incf	0x2c, f             	INCF	_uintDelayCount,F
+0000eb   1903     btfsc	0x3, 0x2           	BTFSC	STATUS,2
+0000ec   0aad     incf	0x2d, f             	INCF	(_uintDelayCount + 1),F
+0000ed   28de     goto	0xde                	GOTO	_00105_DS_
+                                           _00107_DS_
+                                           ;	.line	73; "blink.c"	uintDelayCount = 0;
+0000ee   1283     bcf	0x3, 0x5             	BANKSEL	_uintDelayCount
+0000ef   1303     bcf	0x3, 0x6             
+0000f0   01ac     clrf	0x2c                	CLRF	_uintDelayCount
+0000f1   01ad     clrf	0x2d                	CLRF	(_uintDelayCount + 1)
+                                           ;	.line	76; "blink.c"	ucharCount++;
+0000f2   1283     bcf	0x3, 0x5             	BANKSEL	_ucharCount
+0000f3   1303     bcf	0x3, 0x6             
+0000f4   0aae     incf	0x2e, f             	INCF	_ucharCount,F
+                                           ;	.line	79; "blink.c"	PORTC = ucharCount;
+0000f5   082e     movf	0x2e, w             	MOVF	_ucharCount,W
+0000f6   1283     bcf	0x3, 0x5             	BANKSEL	_PORTC
+0000f7   1303     bcf	0x3, 0x6             
+0000f8   0087     movwf	0x7                	MOVWF	_PORTC
+0000f9   28de     goto	0xde                	GOTO	_00105_DS_
+0000fa   0008     return                   	RETURN	
+                                           ; exit point of _main
+                                           
+                                           
+                                           ;	code size estimation:
+                                           ;	   23+    8 =    31 instructions (   78 byte)
+                                           
+                                           	end
