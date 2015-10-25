@@ -1,0 +1,5 @@
+2015.10.24 
+    - When installing the pk2cmd, I had to install libusb-dev. Most people
+      suggest that when using the libusb in C++, they suggest installing
+      libsub-1.0.0, but I think libusb-dev was enough to "make" pk2cmd from the
+      source.
