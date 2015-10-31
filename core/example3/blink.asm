@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
-; This file was generated Sat Oct 31 12:21:51 2015
+; This file was generated Sat Oct 31 12:39:06 2015
 ;--------------------------------------------------------
 ; PIC port for the 14-bit core
 ;--------------------------------------------------------
@@ -145,8 +145,6 @@
 ; global declarations
 ;--------------------------------------------------------
 	global	_main
-	global	_ucharCount
-	global	_uintDelayCount
 
 	global PSAVE
 	global SSAVE
@@ -195,16 +193,6 @@ STK00	res 1
 ;--------------------------------------------------------
 ; initialized data
 ;--------------------------------------------------------
-
-ID_blink_0	idata
-_ucharCount
-	db	0x00
-
-
-ID_blink_1	idata
-_uintDelayCount
-	db	0x00, 0x00
-
 ;--------------------------------------------------------
 ; overlayable items in internal ram 
 ;--------------------------------------------------------
@@ -229,59 +217,57 @@ code_blink	code
 ;; Starting pCode block
 _main	;Function start
 ; 2 exit points
-;	.line	59; "blink.c"	TRISD = 0x00;
-	BANKSEL	_TRISD
-	CLRF	_TRISD
-;	.line	61; "blink.c"	ucharCount = 0;
-	BANKSEL	_ucharCount
-	CLRF	_ucharCount
-;	.line	62; "blink.c"	uintDelayCount = 0;
-	BANKSEL	_uintDelayCount
-	CLRF	_uintDelayCount
-	CLRF	(_uintDelayCount + 1)
-;	.line	65; "blink.c"	ANSEL = 0x00;
+;	.line	6; "blink.c"	ANSEL = 0x00;
 	BANKSEL	_ANSEL
 	CLRF	_ANSEL
-;	.line	66; "blink.c"	ANSELH = 0x00;
+;	.line	7; "blink.c"	ANSELH = 0x00;
 	CLRF	_ANSELH
-;;unsigned compare: left < lit(0x2710=10000), size=2
-_00105_DS_
-;	.line	72; "blink.c"	while ( uintDelayCount < 10000 )
-	MOVLW	0x27
-	BANKSEL	_uintDelayCount
-	SUBWF	(_uintDelayCount + 1),W
-	BTFSS	STATUS,2
-	GOTO	_00119_DS_
-	MOVLW	0x10
-	SUBWF	_uintDelayCount,W
-_00119_DS_
-	BTFSC	STATUS,0
-	GOTO	_00107_DS_
-;;genSkipc:3247: created from rifx:0xffc014c4
-;	.line	75; "blink.c"	uintDelayCount++;
-	BANKSEL	_uintDelayCount
-	INCF	_uintDelayCount,F
-	BTFSC	STATUS,2
-	INCF	(_uintDelayCount + 1),F
-	GOTO	_00105_DS_
-_00107_DS_
-;	.line	79; "blink.c"	uintDelayCount = 0;
-	BANKSEL	_uintDelayCount
-	CLRF	_uintDelayCount
-	CLRF	(_uintDelayCount + 1)
-;	.line	82; "blink.c"	ucharCount++;
-	BANKSEL	_ucharCount
-	INCF	_ucharCount,F
-;	.line	86; "blink.c"	PORTD = ucharCount;
-	MOVF	_ucharCount,W
+;	.line	9; "blink.c"	TRISD = 0x0;
+	BANKSEL	_TRISD
+	CLRF	_TRISD
+;	.line	10; "blink.c"	TRISD0 = 0x0;
+	BCF	_TRISDbits,0
+;	.line	11; "blink.c"	TRISD1 = 0x0;
+	BCF	_TRISDbits,1
+;	.line	12; "blink.c"	TRISD2 = 0x0;
+	BCF	_TRISDbits,2
+;	.line	13; "blink.c"	TRISD3 = 0x0;
+	BCF	_TRISDbits,3
+;	.line	14; "blink.c"	TRISD4 = 0x0;
+	BCF	_TRISDbits,4
+;	.line	15; "blink.c"	TRISD5 = 0x0;
+	BCF	_TRISDbits,5
+;	.line	16; "blink.c"	TRISD6 = 0x0;
+	BCF	_TRISDbits,6
+;	.line	17; "blink.c"	TRISD7 = 0x0;
+	BCF	_TRISDbits,7
+_00106_DS_
+;	.line	21; "blink.c"	PORTD = 0xFF;
+	MOVLW	0xff
 	BANKSEL	_PORTD
 	MOVWF	_PORTD
-	GOTO	_00105_DS_
+;	.line	22; "blink.c"	RD0 = 1;
+	BSF	_PORTDbits,0
+;	.line	23; "blink.c"	RD1 = 1;
+	BSF	_PORTDbits,1
+;	.line	24; "blink.c"	RD2 = 1;
+	BSF	_PORTDbits,2
+;	.line	25; "blink.c"	RD3 = 1;
+	BSF	_PORTDbits,3
+;	.line	26; "blink.c"	RD4 = 1;
+	BSF	_PORTDbits,4
+;	.line	27; "blink.c"	RD5 = 1;
+	BSF	_PORTDbits,5
+;	.line	28; "blink.c"	RD6 = 1;
+	BSF	_PORTDbits,6
+;	.line	29; "blink.c"	RD7 = 1;
+	BSF	_PORTDbits,7
+	GOTO	_00106_DS_
 	RETURN	
 ; exit point of _main
 
 
 ;	code size estimation:
-;	   25+    9 =    34 instructions (   86 byte)
+;	   23+    3 =    26 instructions (   58 byte)
 
 	end

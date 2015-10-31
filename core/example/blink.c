@@ -23,8 +23,10 @@
 // But according to this:
 // http://sourceforge.net/p/sdcc/discussion/1865/thread/d6b0cef6/
 // The configuration bit setup in SDCC has changed so I need to use:
-#pragma config _CONFIG1=0x2FF4;
-#pragma config _CONFIG2=0x3fff;
+// sung still these pragama directives are shown as unknown
+// sung originally enabled
+//#pragma config _CONFIG1=0x2FF4;
+//#pragma config _CONFIG2=0x3fff;
  
 //To compile:
 //sdcc -mpic14 -p16f887 blink.c
@@ -54,7 +56,7 @@ unsigned int uintDelayCount = 0;
 void main(void)
 {
     //Set PORTC to all outputs
-    TRISC = 0x00;
+    TRISD = 0x00;
  
     ucharCount = 0;
     uintDelayCount = 0;
@@ -76,7 +78,8 @@ void main(void)
         ucharCount++;
  
         //Display the count on the PORTC pins
-        PORTC = ucharCount;
+        //PORTC = ucharCount;
+        PORTD = ucharCount;
  
     }
  

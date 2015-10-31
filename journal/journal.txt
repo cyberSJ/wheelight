@@ -18,3 +18,5 @@
     - Successfully programmed the chip, but I don't see the LED blinking.
       Either external power must be provided to the board, or I'm using wrong
       port to blink the light. Currently the port C is used in the blink.c.
+2015.10.31. Saturday
+    - Trying to turn on the LED light on the 44-pin demo board. Unsuccessful.
