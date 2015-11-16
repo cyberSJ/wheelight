@@ -1,4 +1,11 @@
 #include <pic14/pic16f887.h>
+#include <stdint.h> // for uint16_t
+
+//__CONFIG (_WDT_ON);
+//#pragma config WRT = OFF
+
+// this works! Copied from the sdcc manual pdf from the sdcc main website.
+static __code uint16_t __at (_CONFIG1) configword1 = _WDT_ON; 
 
 void main(void)
 {

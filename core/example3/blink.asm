@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
-; This file was generated Sat Oct 31 12:39:06 2015
+; This file was generated Sun Nov 15 21:38:44 2015
 ;--------------------------------------------------------
 ; PIC port for the 14-bit core
 ;--------------------------------------------------------
@@ -9,6 +9,10 @@
 	list	p=16f887
 	radix dec
 	include "p16f887.inc"
+;--------------------------------------------------------
+; config word(s)
+;--------------------------------------------------------
+	__config _CONFIG1, 0x3fff
 ;--------------------------------------------------------
 ; external declarations
 ;--------------------------------------------------------
@@ -217,50 +221,50 @@ code_blink	code
 ;; Starting pCode block
 _main	;Function start
 ; 2 exit points
-;	.line	6; "blink.c"	ANSEL = 0x00;
+;	.line	13; "blink.c"	ANSEL = 0x00;
 	BANKSEL	_ANSEL
 	CLRF	_ANSEL
-;	.line	7; "blink.c"	ANSELH = 0x00;
+;	.line	14; "blink.c"	ANSELH = 0x00;
 	CLRF	_ANSELH
-;	.line	9; "blink.c"	TRISD = 0x0;
+;	.line	16; "blink.c"	TRISD = 0x0;
 	BANKSEL	_TRISD
 	CLRF	_TRISD
-;	.line	10; "blink.c"	TRISD0 = 0x0;
+;	.line	17; "blink.c"	TRISD0 = 0x0;
 	BCF	_TRISDbits,0
-;	.line	11; "blink.c"	TRISD1 = 0x0;
+;	.line	18; "blink.c"	TRISD1 = 0x0;
 	BCF	_TRISDbits,1
-;	.line	12; "blink.c"	TRISD2 = 0x0;
+;	.line	19; "blink.c"	TRISD2 = 0x0;
 	BCF	_TRISDbits,2
-;	.line	13; "blink.c"	TRISD3 = 0x0;
+;	.line	20; "blink.c"	TRISD3 = 0x0;
 	BCF	_TRISDbits,3
-;	.line	14; "blink.c"	TRISD4 = 0x0;
+;	.line	21; "blink.c"	TRISD4 = 0x0;
 	BCF	_TRISDbits,4
-;	.line	15; "blink.c"	TRISD5 = 0x0;
+;	.line	22; "blink.c"	TRISD5 = 0x0;
 	BCF	_TRISDbits,5
-;	.line	16; "blink.c"	TRISD6 = 0x0;
+;	.line	23; "blink.c"	TRISD6 = 0x0;
 	BCF	_TRISDbits,6
-;	.line	17; "blink.c"	TRISD7 = 0x0;
+;	.line	24; "blink.c"	TRISD7 = 0x0;
 	BCF	_TRISDbits,7
 _00106_DS_
-;	.line	21; "blink.c"	PORTD = 0xFF;
+;	.line	28; "blink.c"	PORTD = 0xFF;
 	MOVLW	0xff
 	BANKSEL	_PORTD
 	MOVWF	_PORTD
-;	.line	22; "blink.c"	RD0 = 1;
+;	.line	29; "blink.c"	RD0 = 1;
 	BSF	_PORTDbits,0
-;	.line	23; "blink.c"	RD1 = 1;
+;	.line	30; "blink.c"	RD1 = 1;
 	BSF	_PORTDbits,1
-;	.line	24; "blink.c"	RD2 = 1;
+;	.line	31; "blink.c"	RD2 = 1;
 	BSF	_PORTDbits,2
-;	.line	25; "blink.c"	RD3 = 1;
+;	.line	32; "blink.c"	RD3 = 1;
 	BSF	_PORTDbits,3
-;	.line	26; "blink.c"	RD4 = 1;
+;	.line	33; "blink.c"	RD4 = 1;
 	BSF	_PORTDbits,4
-;	.line	27; "blink.c"	RD5 = 1;
+;	.line	34; "blink.c"	RD5 = 1;
 	BSF	_PORTDbits,5
-;	.line	28; "blink.c"	RD6 = 1;
+;	.line	35; "blink.c"	RD6 = 1;
 	BSF	_PORTDbits,6
-;	.line	29; "blink.c"	RD7 = 1;
+;	.line	36; "blink.c"	RD7 = 1;
 	BSF	_PORTDbits,7
 	GOTO	_00106_DS_
 	RETURN	
