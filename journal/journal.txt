@@ -24,3 +24,7 @@
     - Maybe it is some kind of configuration problem.... Still figuring it out.
     - The path to the PIC header file is at:
       "/usr/local/share/sdcc/non-free/include/pic14/pic16f887.h"
+2015.11.17 Tuesday
+    - My Pickit2 is not powering the MCU (The "target" LED on Pickit2 is not
+      lit.
+    - Maybe I should try to program in Windows first.

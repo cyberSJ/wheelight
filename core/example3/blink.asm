@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
-; This file was generated Sun Nov 15 21:38:44 2015
+; This file was generated Tue Nov 17 05:44:10 2015
 ;--------------------------------------------------------
 ; PIC port for the 14-bit core
 ;--------------------------------------------------------
@@ -12,7 +12,8 @@
 ;--------------------------------------------------------
 ; config word(s)
 ;--------------------------------------------------------
-	__config _CONFIG1, 0x3fff
+	__config _CONFIG1, 0x20e4
+	__config _CONFIG2, 0x2fff
 ;--------------------------------------------------------
 ; external declarations
 ;--------------------------------------------------------
@@ -149,6 +150,7 @@
 ; global declarations
 ;--------------------------------------------------------
 	global	_main
+	global	_i
 
 	global PSAVE
 	global SSAVE
@@ -188,6 +190,9 @@ STK00	res 1
 ;--------------------------------------------------------
 ; global definitions
 ;--------------------------------------------------------
+UD_blink_0	udata
+_i	res	2
+
 ;--------------------------------------------------------
 ; absolute symbol definitions
 ;--------------------------------------------------------
@@ -221,57 +226,34 @@ code_blink	code
 ;; Starting pCode block
 _main	;Function start
 ; 2 exit points
-;	.line	13; "blink.c"	ANSEL = 0x00;
+;	.line	19; "blink.c"	ANSEL = 0x00;
 	BANKSEL	_ANSEL
 	CLRF	_ANSEL
-;	.line	14; "blink.c"	ANSELH = 0x00;
+;	.line	20; "blink.c"	ANSELH = 0x00;
 	CLRF	_ANSELH
-;	.line	16; "blink.c"	TRISD = 0x0;
-	BANKSEL	_TRISD
-	CLRF	_TRISD
-;	.line	17; "blink.c"	TRISD0 = 0x0;
-	BCF	_TRISDbits,0
-;	.line	18; "blink.c"	TRISD1 = 0x0;
-	BCF	_TRISDbits,1
-;	.line	19; "blink.c"	TRISD2 = 0x0;
-	BCF	_TRISDbits,2
-;	.line	20; "blink.c"	TRISD3 = 0x0;
-	BCF	_TRISDbits,3
-;	.line	21; "blink.c"	TRISD4 = 0x0;
-	BCF	_TRISDbits,4
-;	.line	22; "blink.c"	TRISD5 = 0x0;
-	BCF	_TRISDbits,5
-;	.line	23; "blink.c"	TRISD6 = 0x0;
-	BCF	_TRISDbits,6
-;	.line	24; "blink.c"	TRISD7 = 0x0;
-	BCF	_TRISDbits,7
-_00106_DS_
-;	.line	28; "blink.c"	PORTD = 0xFF;
+;	.line	22; "blink.c"	TRISB = 0xFF;
 	MOVLW	0xff
+	BANKSEL	_TRISB
+	MOVWF	_TRISB
+;	.line	23; "blink.c"	TRISD = 0x0;
+	CLRF	_TRISD
+_00106_DS_
+;	.line	35; "blink.c"	i = PORTB;
+	BANKSEL	_PORTB
+	MOVF	_PORTB,W
+	BANKSEL	_i
+	MOVWF	_i
+	CLRF	(_i + 1)
+;	.line	36; "blink.c"	PORTD = i;
+	MOVF	_i,W
 	BANKSEL	_PORTD
 	MOVWF	_PORTD
-;	.line	29; "blink.c"	RD0 = 1;
-	BSF	_PORTDbits,0
-;	.line	30; "blink.c"	RD1 = 1;
-	BSF	_PORTDbits,1
-;	.line	31; "blink.c"	RD2 = 1;
-	BSF	_PORTDbits,2
-;	.line	32; "blink.c"	RD3 = 1;
-	BSF	_PORTDbits,3
-;	.line	33; "blink.c"	RD4 = 1;
-	BSF	_PORTDbits,4
-;	.line	34; "blink.c"	RD5 = 1;
-	BSF	_PORTDbits,5
-;	.line	35; "blink.c"	RD6 = 1;
-	BSF	_PORTDbits,6
-;	.line	36; "blink.c"	RD7 = 1;
-	BSF	_PORTDbits,7
 	GOTO	_00106_DS_
 	RETURN	
 ; exit point of _main
 
 
 ;	code size estimation:
-;	   23+    3 =    26 instructions (   58 byte)
+;	   12+    5 =    17 instructions (   44 byte)
 
 	end

@@ -1,6 +1,6 @@
 gplink-0.13.7 beta
 Copyright (c) 1998-2005 gputils project
-Listing File Generated: 11-15-2015  21:38:44
+Listing File Generated: 11-17-2015  05:44:10
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
-                                           ; This file was generated Sun Nov 15 21:38:44 2015
+                                           ; This file was generated Tue Nov 17 05:44:10 2015
                                            ;--------------------------------------------------------
                                            ; PIC port for the 14-bit core
                                            ;--------------------------------------------------------
@@ -22,7 +22,8 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; config word(s)
                                            ;--------------------------------------------------------
-                                           	__config _CONFIG1, 0x3fff
+                                           	__config _CONFIG1, 0x20e4
+                                           	__config _CONFIG2, 0x2fff
                                            ;--------------------------------------------------------
                                            ; external declarations
                                            ;--------------------------------------------------------
@@ -159,6 +160,7 @@ Address  Value    Disassembly              Source
                                            ; global declarations
                                            ;--------------------------------------------------------
                                            	global	_main
+                                           	global	_i
                                            
                                            	global PSAVE
                                            	global SSAVE
@@ -198,6 +200,9 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; global definitions
                                            ;--------------------------------------------------------
+                                           UD_blink_0	udata
+                                           _i	res	2
+                                           
                                            ;--------------------------------------------------------
                                            ; absolute symbol definitions
                                            ;--------------------------------------------------------
@@ -232,60 +237,39 @@ Address  Value    Disassembly              Source
                                            ;; Starting pCode block
                                            _main	;Function start
                                            ; 2 exit points
-                                           ;	.line	13; "blink.c"	ANSEL = 0x00;
+                                           ;	.line	19; "blink.c"	ANSEL = 0x00;
 0000d4   1683     bsf	0x3, 0x5             	BANKSEL	_ANSEL
 0000d5   1703     bsf	0x3, 0x6             
 0000d6   0188     clrf	0x8                 	CLRF	_ANSEL
-                                           ;	.line	14; "blink.c"	ANSELH = 0x00;
+                                           ;	.line	20; "blink.c"	ANSELH = 0x00;
 0000d7   0189     clrf	0x9                 	CLRF	_ANSELH
-                                           ;	.line	16; "blink.c"	TRISD = 0x0;
-0000d8   1683     bsf	0x3, 0x5             	BANKSEL	_TRISD
-0000d9   1303     bcf	0x3, 0x6             
-0000da   0188     clrf	0x8                 	CLRF	_TRISD
-                                           ;	.line	17; "blink.c"	TRISD0 = 0x0;
-0000db   1008     bcf	0x8, 0               	BCF	_TRISDbits,0
-                                           ;	.line	18; "blink.c"	TRISD1 = 0x0;
-0000dc   1088     bcf	0x8, 0x1             	BCF	_TRISDbits,1
-                                           ;	.line	19; "blink.c"	TRISD2 = 0x0;
-0000dd   1108     bcf	0x8, 0x2             	BCF	_TRISDbits,2
-                                           ;	.line	20; "blink.c"	TRISD3 = 0x0;
-0000de   1188     bcf	0x8, 0x3             	BCF	_TRISDbits,3
-                                           ;	.line	21; "blink.c"	TRISD4 = 0x0;
-0000df   1208     bcf	0x8, 0x4             	BCF	_TRISDbits,4
-                                           ;	.line	22; "blink.c"	TRISD5 = 0x0;
-0000e0   1288     bcf	0x8, 0x5             	BCF	_TRISDbits,5
-                                           ;	.line	23; "blink.c"	TRISD6 = 0x0;
-0000e1   1308     bcf	0x8, 0x6             	BCF	_TRISDbits,6
-                                           ;	.line	24; "blink.c"	TRISD7 = 0x0;
-0000e2   1388     bcf	0x8, 0x7             	BCF	_TRISDbits,7
+                                           ;	.line	22; "blink.c"	TRISB = 0xFF;
+0000d8   30ff     movlw	0xff               	MOVLW	0xff
+0000d9   1683     bsf	0x3, 0x5             	BANKSEL	_TRISB
+0000da   1303     bcf	0x3, 0x6             
+0000db   0086     movwf	0x6                	MOVWF	_TRISB
+                                           ;	.line	23; "blink.c"	TRISD = 0x0;
+0000dc   0188     clrf	0x8                 	CLRF	_TRISD
                                            _00106_DS_
-                                           ;	.line	28; "blink.c"	PORTD = 0xFF;
-0000e3   30ff     movlw	0xff               	MOVLW	0xff
-0000e4   1283     bcf	0x3, 0x5             	BANKSEL	_PORTD
-0000e5   1303     bcf	0x3, 0x6             
-0000e6   0088     movwf	0x8                	MOVWF	_PORTD
-                                           ;	.line	29; "blink.c"	RD0 = 1;
-0000e7   1408     bsf	0x8, 0               	BSF	_PORTDbits,0
-                                           ;	.line	30; "blink.c"	RD1 = 1;
-0000e8   1488     bsf	0x8, 0x1             	BSF	_PORTDbits,1
-                                           ;	.line	31; "blink.c"	RD2 = 1;
-0000e9   1508     bsf	0x8, 0x2             	BSF	_PORTDbits,2
-                                           ;	.line	32; "blink.c"	RD3 = 1;
-0000ea   1588     bsf	0x8, 0x3             	BSF	_PORTDbits,3
-                                           ;	.line	33; "blink.c"	RD4 = 1;
-0000eb   1608     bsf	0x8, 0x4             	BSF	_PORTDbits,4
-                                           ;	.line	34; "blink.c"	RD5 = 1;
-0000ec   1688     bsf	0x8, 0x5             	BSF	_PORTDbits,5
-                                           ;	.line	35; "blink.c"	RD6 = 1;
-0000ed   1708     bsf	0x8, 0x6             	BSF	_PORTDbits,6
-                                           ;	.line	36; "blink.c"	RD7 = 1;
-0000ee   1788     bsf	0x8, 0x7             	BSF	_PORTDbits,7
-0000ef   28e3     goto	0xe3                	GOTO	_00106_DS_
-0000f0   0008     return                   	RETURN	
+                                           ;	.line	35; "blink.c"	i = PORTB;
+0000dd   1283     bcf	0x3, 0x5             	BANKSEL	_PORTB
+0000de   1303     bcf	0x3, 0x6             
+0000df   0806     movf	0x6, w              	MOVF	_PORTB,W
+0000e0   1283     bcf	0x3, 0x5             	BANKSEL	_i
+0000e1   1303     bcf	0x3, 0x6             
+0000e2   00ac     movwf	0x2c               	MOVWF	_i
+0000e3   01ad     clrf	0x2d                	CLRF	(_i + 1)
+                                           ;	.line	36; "blink.c"	PORTD = i;
+0000e4   082c     movf	0x2c, w             	MOVF	_i,W
+0000e5   1283     bcf	0x3, 0x5             	BANKSEL	_PORTD
+0000e6   1303     bcf	0x3, 0x6             
+0000e7   0088     movwf	0x8                	MOVWF	_PORTD
+0000e8   28dd     goto	0xdd                	GOTO	_00106_DS_
+0000e9   0008     return                   	RETURN	
                                            ; exit point of _main
                                            
                                            
                                            ;	code size estimation:
-                                           ;	   23+    3 =    26 instructions (   58 byte)
+                                           ;	   12+    5 =    17 instructions (   44 byte)
                                            
                                            	end

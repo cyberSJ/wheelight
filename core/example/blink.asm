@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
-; This file was generated Sat Oct 31 12:21:51 2015
+; This file was generated Tue Nov 17 05:38:16 2015
 ;--------------------------------------------------------
 ; PIC port for the 14-bit core
 ;--------------------------------------------------------
@@ -239,14 +239,9 @@ _main	;Function start
 	BANKSEL	_uintDelayCount
 	CLRF	_uintDelayCount
 	CLRF	(_uintDelayCount + 1)
-;	.line	65; "blink.c"	ANSEL = 0x00;
-	BANKSEL	_ANSEL
-	CLRF	_ANSEL
-;	.line	66; "blink.c"	ANSELH = 0x00;
-	CLRF	_ANSELH
 ;;unsigned compare: left < lit(0x2710=10000), size=2
 _00105_DS_
-;	.line	72; "blink.c"	while ( uintDelayCount < 10000 )
+;	.line	68; "blink.c"	while ( uintDelayCount < 10000 )
 	MOVLW	0x27
 	BANKSEL	_uintDelayCount
 	SUBWF	(_uintDelayCount + 1),W
@@ -257,22 +252,22 @@ _00105_DS_
 _00119_DS_
 	BTFSC	STATUS,0
 	GOTO	_00107_DS_
-;;genSkipc:3247: created from rifx:0xffc014c4
-;	.line	75; "blink.c"	uintDelayCount++;
+;;genSkipc:3247: created from rifx:0xff97fad4
+;	.line	71; "blink.c"	uintDelayCount++;
 	BANKSEL	_uintDelayCount
 	INCF	_uintDelayCount,F
 	BTFSC	STATUS,2
 	INCF	(_uintDelayCount + 1),F
 	GOTO	_00105_DS_
 _00107_DS_
-;	.line	79; "blink.c"	uintDelayCount = 0;
+;	.line	75; "blink.c"	uintDelayCount = 0;
 	BANKSEL	_uintDelayCount
 	CLRF	_uintDelayCount
 	CLRF	(_uintDelayCount + 1)
-;	.line	82; "blink.c"	ucharCount++;
+;	.line	78; "blink.c"	ucharCount++;
 	BANKSEL	_ucharCount
 	INCF	_ucharCount,F
-;	.line	86; "blink.c"	PORTD = ucharCount;
+;	.line	82; "blink.c"	PORTD = ucharCount;
 	MOVF	_ucharCount,W
 	BANKSEL	_PORTD
 	MOVWF	_PORTD
@@ -282,6 +277,6 @@ _00107_DS_
 
 
 ;	code size estimation:
-;	   25+    9 =    34 instructions (   86 byte)
+;	   23+    8 =    31 instructions (   78 byte)
 
 	end
