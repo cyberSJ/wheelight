@@ -1,3 +1,5 @@
 *.swp
 *.o
 *.session
+mplabx/example/blink.X/build/
+mplabx/example/blink.X/dist/

@@ -28,3 +28,13 @@
     - My Pickit2 is not powering the MCU (The "target" LED on Pickit2 is not
       lit.
     - Maybe I should try to program in Windows first.
+2015.11.27 Friday
+    - MPLAB X is used to successfully blink LEDs on the 44-pin target board.
+        1. Right click the "blink" project
+        2. Click Properties
+        3. Check Pickit 2 for the hardware tool
+        4. Check xc8 compiler (install it if not found by MPLAB X)
+        5. Choose correct PIC cihp (PIC16F887 for now)
+        6. Then the source code should compile.
+    - Sometimes, you have to program second time in order to get the code run
+      in the actual hardware..

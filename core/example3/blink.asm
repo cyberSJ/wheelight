@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
-; This file was generated Tue Nov 17 05:44:10 2015
+; This file was generated Mon Nov 23 20:59:34 2015
 ;--------------------------------------------------------
 ; PIC port for the 14-bit core
 ;--------------------------------------------------------
@@ -12,8 +12,7 @@
 ;--------------------------------------------------------
 ; config word(s)
 ;--------------------------------------------------------
-	__config _CONFIG1, 0x20e4
-	__config _CONFIG2, 0x2fff
+	__config _CONFIG1, 0x30d4
 ;--------------------------------------------------------
 ; external declarations
 ;--------------------------------------------------------
@@ -226,26 +225,12 @@ code_blink	code
 ;; Starting pCode block
 _main	;Function start
 ; 2 exit points
-;	.line	19; "blink.c"	ANSEL = 0x00;
-	BANKSEL	_ANSEL
-	CLRF	_ANSEL
-;	.line	20; "blink.c"	ANSELH = 0x00;
-	CLRF	_ANSELH
-;	.line	22; "blink.c"	TRISB = 0xFF;
-	MOVLW	0xff
-	BANKSEL	_TRISB
-	MOVWF	_TRISB
-;	.line	23; "blink.c"	TRISD = 0x0;
+;	.line	32; "blink.c"	TRISD = 0x0;
+	BANKSEL	_TRISD
 	CLRF	_TRISD
 _00106_DS_
-;	.line	35; "blink.c"	i = PORTB;
-	BANKSEL	_PORTB
-	MOVF	_PORTB,W
-	BANKSEL	_i
-	MOVWF	_i
-	CLRF	(_i + 1)
-;	.line	36; "blink.c"	PORTD = i;
-	MOVF	_i,W
+;	.line	35; "blink.c"	PORTD = 0xff;
+	MOVLW	0xff
 	BANKSEL	_PORTD
 	MOVWF	_PORTD
 	GOTO	_00106_DS_
@@ -254,6 +239,6 @@ _00106_DS_
 
 
 ;	code size estimation:
-;	   12+    5 =    17 instructions (   44 byte)
+;	    5+    2 =     7 instructions (   18 byte)
 
 	end
