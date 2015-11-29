@@ -1,7 +1,7 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
 ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
-; This file was generated Mon Nov 23 20:59:34 2015
+; This file was generated Sat Nov 28 20:29:42 2015
 ;--------------------------------------------------------
 ; PIC port for the 14-bit core
 ;--------------------------------------------------------
@@ -148,6 +148,7 @@
 ;--------------------------------------------------------
 ; global declarations
 ;--------------------------------------------------------
+	global	_delay
 	global	_main
 	global	_i
 
@@ -198,6 +199,11 @@ _i	res	2
 ;--------------------------------------------------------
 ; compiler-defined variables
 ;--------------------------------------------------------
+UDL_blink_0	udata
+r0x1000	res	1
+r0x1001	res	1
+r0x1002	res	1
+r0x1003	res	1
 ;--------------------------------------------------------
 ; initialized data
 ;--------------------------------------------------------
@@ -222,23 +228,77 @@ code_blink	code
 ;entry:  _main	;Function start
 ; 2 exit points
 ;has an exit
+;functions called:
+;   _delay
+;   _delay
+;   _delay
+;   _delay
 ;; Starting pCode block
 _main	;Function start
 ; 2 exit points
-;	.line	32; "blink.c"	TRISD = 0x0;
+;	.line	51; "blink.c"	TRISD = 0x0;
 	BANKSEL	_TRISD
 	CLRF	_TRISD
-_00106_DS_
-;	.line	35; "blink.c"	PORTD = 0xff;
-	MOVLW	0xff
+_00114_DS_
+;	.line	54; "blink.c"	delay();
+	CALL	_delay
+;	.line	55; "blink.c"	PORTD = 0x0f;
+	MOVLW	0x0f
 	BANKSEL	_PORTD
 	MOVWF	_PORTD
-	GOTO	_00106_DS_
+;	.line	56; "blink.c"	delay();
+	CALL	_delay
+;	.line	57; "blink.c"	PORTD = 0x00;
+	BANKSEL	_PORTD
+	CLRF	_PORTD
+	GOTO	_00114_DS_
 	RETURN	
 ; exit point of _main
 
+;***
+;  pBlock Stats: dbName = C
+;***
+;entry:  _delay	;Function start
+; 2 exit points
+;has an exit
+;4 compiler assigned registers:
+;   r0x1000
+;   r0x1001
+;   r0x1002
+;   r0x1003
+;; Starting pCode block
+_delay	;Function start
+; 2 exit points
+;	.line	40; "blink.c"	for (counter = 0; counter<10000; counter++) 
+	MOVLW	0x10
+	BANKSEL	r0x1000
+	MOVWF	r0x1000
+	MOVLW	0x27
+	MOVWF	r0x1001
+_00108_DS_
+	MOVLW	0xff
+	BANKSEL	r0x1000
+	ADDWF	r0x1000,W
+	MOVWF	r0x1002
+	MOVLW	0xff
+	MOVWF	r0x1003
+	MOVF	r0x1001,W
+	BTFSC	STATUS,0
+	INCFSZ	r0x1001,W
+	ADDWF	r0x1003,F
+	MOVF	r0x1002,W
+	MOVWF	r0x1000
+	MOVF	r0x1003,W
+	MOVWF	r0x1001
+	MOVF	r0x1002,W
+	IORWF	r0x1003,W
+	BTFSS	STATUS,2
+	GOTO	_00108_DS_
+	RETURN	
+; exit point of _delay
+
 
 ;	code size estimation:
-;	    5+    2 =     7 instructions (   18 byte)
+;	   30+    5 =    35 instructions (   80 byte)
 
 	end

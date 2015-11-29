@@ -1,6 +1,9 @@
 #include <pic14/pic16f887.h>
 #include <stdint.h> // for uint16_t
 
+// compile using:
+// sdcc --use-non-free -mpic14 -p16f887 blink.c
+
 //__CONFIG (_WDT_ON);
 //#pragma config WRT = OFF
 
@@ -9,7 +12,20 @@
 //static __code uint16_t __at (_CONFIG2) configword2 = 0x3FFF; 
 
 //static __code uint16_t __at (_CONFIG1) configword1 = 0x20E4; 
-static __code uint16_t __at (_CONFIG1) configword1 = 
+
+//static __code uint16_t __at (_CONFIG1) configword1 = 
+//    _INTRC_OSC_NOCLKOUT & 
+//    _WDT_OFF & 
+//    _PWRTE_OFF & 
+//    _MCLRE_OFF & 
+//    _CP_OFF & 
+//    _BOR_OFF & 
+//    _IESO_OFF & 
+//    _FCMEN_OFF; 
+
+//static __code uint16_t __at (_CONFIG2) configword2 = 0x2FFF; 
+    
+uint16_t __at _CONFIG1 __CONFIG = 
     _INTRC_OSC_NOCLKOUT & 
     _WDT_OFF & 
     _PWRTE_OFF & 
@@ -19,9 +35,15 @@ static __code uint16_t __at (_CONFIG1) configword1 =
     _IESO_OFF & 
     _FCMEN_OFF; 
 
-//static __code uint16_t __at (_CONFIG2) configword2 = 0x2FFF; 
-    
 int i;
+
+void delay() 
+{
+    int counter = 0;
+    for (counter = 0; counter<10000; counter++) 
+    {
+    }
+}
 
 void main(void)
 {
@@ -32,6 +54,9 @@ void main(void)
     TRISD = 0x0;
     while (1)
     {
-        PORTD = 0xff;
+        delay();
+        PORTD = 0x0f;
+        delay();
+        PORTD = 0x00;
     }
 }

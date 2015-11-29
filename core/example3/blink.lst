@@ -1,6 +1,6 @@
 gplink-0.13.7 beta
 Copyright (c) 1998-2005 gputils project
-Listing File Generated: 11-23-2015  20:59:34
+Listing File Generated: 11-28-2015  20:29:42
  
  
 Address  Value    Disassembly              Source
@@ -8,7 +8,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; File Created by SDCC : free open source ANSI-C Compiler
                                            ; Version 3.5.0 #9253 (Jun 20 2015) (Linux)
-                                           ; This file was generated Mon Nov 23 20:59:34 2015
+                                           ; This file was generated Sat Nov 28 20:29:42 2015
                                            ;--------------------------------------------------------
                                            ; PIC port for the 14-bit core
                                            ;--------------------------------------------------------
@@ -158,6 +158,7 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; global declarations
                                            ;--------------------------------------------------------
+                                           	global	_delay
                                            	global	_main
                                            	global	_i
                                            
@@ -208,6 +209,11 @@ Address  Value    Disassembly              Source
                                            ;--------------------------------------------------------
                                            ; compiler-defined variables
                                            ;--------------------------------------------------------
+                                           UDL_blink_0	udata
+                                           r0x1000	res	1
+                                           r0x1001	res	1
+                                           r0x1002	res	1
+                                           r0x1003	res	1
                                            ;--------------------------------------------------------
                                            ; initialized data
                                            ;--------------------------------------------------------
@@ -233,25 +239,82 @@ Address  Value    Disassembly              Source
                                            ;entry:  _main	;Function start
                                            ; 2 exit points
                                            ;has an exit
+                                           ;functions called:
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
+                                           ;   _delay
                                            ;; Starting pCode block
                                            _main	;Function start
                                            ; 2 exit points
-                                           ;	.line	32; "blink.c"	TRISD = 0x0;
+                                           ;	.line	51; "blink.c"	TRISD = 0x0;
 0000d4   1683     bsf	0x3, 0x5             	BANKSEL	_TRISD
 0000d5   1303     bcf	0x3, 0x6             
 0000d6   0188     clrf	0x8                 	CLRF	_TRISD
-                                           _00106_DS_
-                                           ;	.line	35; "blink.c"	PORTD = 0xff;
-0000d7   30ff     movlw	0xff               	MOVLW	0xff
-0000d8   1283     bcf	0x3, 0x5             	BANKSEL	_PORTD
-0000d9   1303     bcf	0x3, 0x6             
-0000da   0088     movwf	0x8                	MOVWF	_PORTD
-0000db   28d7     goto	0xd7                	GOTO	_00106_DS_
-0000dc   0008     return                   	RETURN	
+                                           _00114_DS_
+                                           ;	.line	54; "blink.c"	delay();
+0000d7   20e2     call	0xe2                	CALL	_delay
+                                           ;	.line	55; "blink.c"	PORTD = 0x0f;
+0000d8   300f     movlw	0xf                	MOVLW	0x0f
+0000d9   1283     bcf	0x3, 0x5             	BANKSEL	_PORTD
+0000da   1303     bcf	0x3, 0x6             
+0000db   0088     movwf	0x8                	MOVWF	_PORTD
+                                           ;	.line	56; "blink.c"	delay();
+0000dc   20e2     call	0xe2                	CALL	_delay
+                                           ;	.line	57; "blink.c"	PORTD = 0x00;
+0000dd   1283     bcf	0x3, 0x5             	BANKSEL	_PORTD
+0000de   1303     bcf	0x3, 0x6             
+0000df   0188     clrf	0x8                 	CLRF	_PORTD
+0000e0   28d7     goto	0xd7                	GOTO	_00114_DS_
+0000e1   0008     return                   	RETURN	
                                            ; exit point of _main
+                                           
+                                           ;***
+                                           ;  pBlock Stats: dbName = C
+                                           ;***
+                                           ;entry:  _delay	;Function start
+                                           ; 2 exit points
+                                           ;has an exit
+                                           ;4 compiler assigned registers:
+                                           ;   r0x1000
+                                           ;   r0x1001
+                                           ;   r0x1002
+                                           ;   r0x1003
+                                           ;; Starting pCode block
+                                           _delay	;Function start
+                                           ; 2 exit points
+                                           ;	.line	40; "blink.c"	for (counter = 0; counter<10000; counter++) 
+0000e2   3010     movlw	0x10               	MOVLW	0x10
+0000e3   1283     bcf	0x3, 0x5             	BANKSEL	r0x1000
+0000e4   1303     bcf	0x3, 0x6             
+0000e5   00ac     movwf	0x2c               	MOVWF	r0x1000
+0000e6   3027     movlw	0x27               	MOVLW	0x27
+0000e7   00ad     movwf	0x2d               	MOVWF	r0x1001
+                                           _00108_DS_
+0000e8   30ff     movlw	0xff               	MOVLW	0xff
+0000e9   1283     bcf	0x3, 0x5             	BANKSEL	r0x1000
+0000ea   1303     bcf	0x3, 0x6             
+0000eb   072c     addwf	0x2c, w            	ADDWF	r0x1000,W
+0000ec   00ae     movwf	0x2e               	MOVWF	r0x1002
+0000ed   30ff     movlw	0xff               	MOVLW	0xff
+0000ee   00af     movwf	0x2f               	MOVWF	r0x1003
+0000ef   082d     movf	0x2d, w             	MOVF	r0x1001,W
+0000f0   1803     btfsc	0x3, 0             	BTFSC	STATUS,0
+0000f1   0f2d     incfsz	0x2d, w           	INCFSZ	r0x1001,W
+0000f2   07af     addwf	0x2f, f            	ADDWF	r0x1003,F
+0000f3   082e     movf	0x2e, w             	MOVF	r0x1002,W
+0000f4   00ac     movwf	0x2c               	MOVWF	r0x1000
+0000f5   082f     movf	0x2f, w             	MOVF	r0x1003,W
+0000f6   00ad     movwf	0x2d               	MOVWF	r0x1001
+0000f7   082e     movf	0x2e, w             	MOVF	r0x1002,W
+0000f8   042f     iorwf	0x2f, w            	IORWF	r0x1003,W
+0000f9   1d03     btfss	0x3, 0x2           	BTFSS	STATUS,2
+0000fa   28e8     goto	0xe8                	GOTO	_00108_DS_
+0000fb   0008     return                   	RETURN	
+                                           ; exit point of _delay
                                            
                                            
                                            ;	code size estimation:
-                                           ;	    5+    2 =     7 instructions (   18 byte)
+                                           ;	   30+    5 =    35 instructions (   80 byte)
                                            
                                            	end
