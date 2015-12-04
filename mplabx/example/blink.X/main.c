@@ -26,7 +26,7 @@ int main(void) {
     
     while (1) {
         //PORTB = 0x0F;
-        PORTD = 0x0f;
+        PORTD = 0x06;
         
         delay();
 

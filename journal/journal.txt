@@ -38,3 +38,16 @@
         6. Then the source code should compile.
     - Sometimes, you have to program second time in order to get the code run
       in the actual hardware..
+2015.11.21 Saturday
+    - Installed MPLAB X on Ubuntu
+2015.11.23 Monday
+    - No success. Trying a combination of configuration bits.
+2015.11.27 Friday 
+    - Success with MPLAB X for blinking the LEDs. Correct configuration is needed
+2015.11.28 Saturday
+    - Failed to blink LEDs using SDCC
+2015.12.3 Thursday
+    - The potentiometer should NOT be turned all the way in the clock-wise
+      direction. Somehow it draws power so that LED does not lit up even with
+      using MPLAB X.
+    - Was able to power the target using pk2cmd.
