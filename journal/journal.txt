@@ -51,3 +51,5 @@
       direction. Somehow it draws power so that LED does not lit up even with
       using MPLAB X.
     - Was able to power the target using pk2cmd.
+    - Successful using the right configuration and powering the board with
+      pk2cmd! Now LED blinks! example3 is the working code.
