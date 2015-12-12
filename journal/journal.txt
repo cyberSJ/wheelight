@@ -53,3 +53,5 @@
     - Was able to power the target using pk2cmd.
     - Successful using the right configuration and powering the board with
       pk2cmd! Now LED blinks! example3 is the working code.
+2015.12.12 Saturday
+    - Testing which configuration bits are neccessary.
