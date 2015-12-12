@@ -1,7 +1,7 @@
 *.swp
 *.o
 *.session
-core/examples3/*
-!core/examples3/*.c
+core/example3/
+!core/example3/*.c
 mplabx/example/blink.X/build/
 mplabx/example/blink.X/dist/
