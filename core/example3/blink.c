@@ -29,7 +29,6 @@ pk2cmd -p pic16f887 -R
     
 // "static __code" is not necessary.
 // sung use cmake
-// sung create build directory
 // sung contain the confiugration in a separate header.
 static __code uint16_t __at _CONFIG1 configword1 = 
     _BOR_OFF &              // needed: Brown-out Reset.Brown-out detection NOT used
