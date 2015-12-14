@@ -2,5 +2,5 @@
 *.o
 *.session
 build
-mplabx/example/blink.X/build/
-mplabx/example/blink.X/dist/
+example/mplabx/example/blink.X/build/
+example/mplabx/example/blink.X/dist/

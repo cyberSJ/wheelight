@@ -55,3 +55,5 @@
       pk2cmd! Now LED blinks! example3 is the working code.
 2015.12.12 Saturday
     - Testing which configuration bits are neccessary.
+2015.12.13 Sunday
+    - Refactored some code.
