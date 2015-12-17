@@ -29,7 +29,6 @@ pk2cmd -p pic16f887 -R
     
 // "static __code" is not necessary.
 // sung use cmake
-// sung contain the confiugration in a separate header.
 static __code uint16_t __at _CONFIG1 configword1 = 
     _BOR_OFF &              // needed: Brown-out Reset.Brown-out detection NOT used
     _INTRC_OSC_NOCLKOUT &   // needed
@@ -45,7 +44,6 @@ static __code uint16_t __at _CONFIG1 configword1 =
 //    _WDTE_OFF &
 //    _LVP_OFF;
 
-// sung try using c++11 chrono
 void delay() 
 {
     int counter = 0;
@@ -56,8 +54,9 @@ void delay()
 
 void main(void)
 {
-    // One example say (sung get url) these bits are necessary, but my
-    // application doesn't seem to require it:
+    // One example say these bits are necessary:
+    // http://electronics.stackexchange.com/questions/23712/need-help-with-16f887-and-microchips-44-pin-demo-board
+    // but my application doesn't seem to require it:
     // Set ANSEL ANSELH to 0 to allow digital I/O
     //ANSEL = 0x00;
     //ANSELH = 0x00;
