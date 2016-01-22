@@ -1,0 +1,6 @@
+*.swp
+*.o
+*.session
+build
+example/mplabx/example/blink.X/build/
+example/mplabx/example/blink.X/dist/
