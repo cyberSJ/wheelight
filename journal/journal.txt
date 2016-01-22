@@ -57,3 +57,20 @@
     - Testing which configuration bits are neccessary.
 2015.12.13 Sunday
     - Refactored some code.
+2015.12.26 Saturday
+    - Discarding JIRA due to price.
+    - Investigating what is required to install Redmine, a free project managment
+      tool.
+2016.1.3 Sunday
+    - Learning about Redmine project management tool. I think I'm going to use
+      it because it benefits me in using this tool and SQL database.
+2016.1.5 Tuesday
+    - Found a Youtube tutorial on installing Redmine on Ubuntu 14.04.
+2016.1.9 Saturday
+    - Installed Redmine. Follow the links on the "link" document for this
+      project.
+    - Make sure to document the path to Redmine /usr/share/redmine.
+    - Since my Redmine is local to my computer, I can't post it online
+      publicly. Due to this, I might have to switch to Taiga.
+2016.1.21 Thursday
+    - Swithced to using Taiga for Applicaition Lifecycle Management tool.
