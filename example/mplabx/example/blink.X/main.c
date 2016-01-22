@@ -13,18 +13,22 @@ __CONFIG(WDTE_OFF & LVP_OFF);
 __CONFIG(WDTDIS & LVPDIS);
 #endif
 
-void delay() {
+void delay() 
+{
     int counter = 0;
-    for (counter = 0; counter<10000; counter++) {
-        ;
+    for (counter = 0; counter<10000; counter++) 
+    {
+        // Intentionally left blank.
     }
 }
 
-int main(void) {
+int main(void) 
+{
     //TRISB = 0;
     TRISD = 0;
     
-    while (1) {
+    while (1) 
+    {
         //PORTB = 0x0F;
         PORTD = 0x06;
         
