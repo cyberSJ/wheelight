@@ -28,11 +28,10 @@ pk2cmd -p pic16f887 -R
 //static __code uint16_t __at (_CONFIG2) configword2 = 0x2FFF; 
     
 // "static __code" is not necessary.
-// sung use cmake
 static __code uint16_t __at _CONFIG1 configword1 = 
-    _BOR_OFF &              // needed: Brown-out Reset.Brown-out detection NOT used
+    _BOR_OFF &              // needed: Brown-out Reset. Brown-out detection NOT used
     _INTRC_OSC_NOCLKOUT &   // needed
-    _MCLRE_OFF;             // needed: Internal MCLR.  RA3 is digital input
+    _MCLRE_OFF;             // needed: Internal MCLR. RA3 is digital input
     //_CP_OFF &             // not a must
     //_FCMEN_OFF &          // not a must: Fail-safe clock monitor disabled.
     //_IESO_OFF &           // not a must: Clock switchover disabled (locked on Internal clock).

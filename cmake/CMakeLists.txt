@@ -5,6 +5,10 @@ project(wheelight)
 set(CMAKE_C_COMPILER /usr/local/bin/sdcc)
 set(CMAKE_CXX_COMPILER /usr/local/bin/sdcc)
 
+###################
+# Build example
+###################
+
 # Use non-free option to find the header for PIC16F887.
 set(NON_FREE_OPTION "use-non-free")
 
@@ -18,17 +22,21 @@ set(CMAKE_C_FLAGS "--${NON_FREE_OPTION} -m${PIC_BIT_TYPE} -p${PIC_DEVICE}")
 
 set(TOP_DIR ${PROJECT_SOURCE_DIR}/..)
 
-add_executable(blink ${TOP_DIR}/example/sdcc/blink.c)
+set(EXAMPLE_NAME "blink")
 
+add_executable(${EXAMPLE_NAME} ${TOP_DIR}/example/sdcc/${EXAMPLE_NAME}.c)
+
+###################
 # Program MCU.
-message(STATUS "cmake install prefix = " ${CMAKE_INSTALL_PREFIX})
-# sung I think make install is not the command I would use to program MCU.
-# Maybe these cmake commands are candidates:
-# add_custom_command()
-# add_custom_target()
-# execute_process()
+###################
 
-# With this, you can do "make sung_target" to perform custom commands.
-add_custom_target(sung_target 
-                  cat blink.lst
-                  DEPENDS ${PROJECT_BINARY_DIR}/blink.lst)
+# With this, you can do "make pic_example" to program PIC MCU.
+# Use .cmake module because we need environment variable during target
+# (pic_example) build time.
+add_custom_target(program_pic
+                  COMMAND ${CMAKE_COMMAND} -P ${TOP_DIR}/cmake/example/program_pic.cmake
+                  DEPENDS ${PROJECT_BINARY_DIR}/${EXAMPLE_NAME}.hex
+                  WORKING_DIRECTORY ${TOP_DIR}/build
+                  COMMENT "CMake loading the program to PIC MCU")
+
+# sung add common pic cmake where we can sepcify pic device only 1 time.
