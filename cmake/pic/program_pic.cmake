@@ -1,29 +1,26 @@
-################################
-# Program PIC MCU using pk2cmd
-################################
-set(EXAMPLE_NAME "blink")
+###################################
+# Program PIC MCU using pk2cmd.
+# Required definitions that needs to be defined before running this cmake
+# module:
+# CMAKE_MODULE_PATH - should be defined when add_custom_target() is issued.
+# SOURCE_NAME - should be defined when add_custom_target() is issued.
+# PK2_COMMAND - is defined in pic_general.cmake
+# PK2_PIC_DEVICE - is defined in pic_general.cmake
+# PK2_VOLTAGE - is defined in pic_general.cmake
+###################################
 
-# Command-line command to use pk2cmd, which is the programmer for PIC MCU.
-set(PK2_COMMAND "pk2cmd")
-
-# Tell pk2cmd which PIC device is to be programmed.
-set(PK2_PIC_DEVICE "pic16f887")
-
-# Set the voltage powring the PIC device.
-set(PK2_VOLTAGE "4")
+include(pic_general)
 
 # For unknown reason, the argument must follow the option letter without any
 # space. For example, "-p pic16f887" does not work, but "-ppic16f887" works.
 set(PK2_COMMAND_OPTIONS "-p${PK2_PIC_DEVICE}" 
-                        "-f${EXAMPLE_NAME}.hex"
+                        "-f${SOURCE_NAME}.hex"
                         "-m"
                         "-A${PK2_VOLTAGE}"
                         "-T")
 
-# This allows pk2cmd to find PK2DeviceFile.dat.
-set(ENV{PATH} "$ENV{PATH}:/usr/share/pk2/")
-
 # Actually program the PIC MCU.
+message(STATUS "Programming PIC MCU...")
 execute_process(COMMAND ${PK2_COMMAND} ${PK2_COMMAND_OPTIONS}
                 RESULT_VARIABLE return_variable
                 OUTPUT_VARIABLE output_variable)
