@@ -8,7 +8,7 @@ message(STATUS "Loading pic_general.cmake...")
 
 #################
 # SDCC options.
-# SDCC is a C++ compiler for PIC, which most importantly roduces a hex file for
+# SDCC is a C++ compiler for PIC, which most importantly produces a hex file for
 # a given source code. This hex file is then loaded with pk2cmd command-line
 # tool.
 #################
