@@ -20,6 +20,8 @@ set(CMAKE_CXX_COMPILER /usr/local/bin/sdcc)
 set(SDCC_NON_FREE_OPTION "use-non-free")
 
 # Define PIC bit type. Either 14 or 16 for the version of SDCC I downloaded.
+# The header file for the pic16f887.h should be located at:
+# /usr/local/share/sdcc/non-free/include/pic14
 set(SDCC_PIC_BIT_TYPE "pic14")
 
 # Define the PIC device.
